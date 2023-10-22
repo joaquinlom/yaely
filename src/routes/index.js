@@ -42,8 +42,6 @@ router.post('/login',(req,res)=>{
         res.status(403).send('User Not found')
     }else{
         console.log(hash);
-        res.status(200).send(hash);
-
         if(user.password == hash){
             console.log("User Found and the password is the same");
         }

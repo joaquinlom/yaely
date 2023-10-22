@@ -17,12 +17,17 @@ exports.watering = async (req,res)=>{
       res.status(500).send("duration property is required");
    }
    //Add Analytic
-   const entry = await Analytic.create({
-      duration: duration,
-      userId: req.user.id
-   })
-   await entry.save();
-
-   io.emit('device.watering',duration);
-   res.status(200).send(true);
+   try {
+      const entry = await Analytic.create({
+         duration: duration,
+         userId: req.user.id
+      })
+      await entry.save();
+   
+      io.emit('device.watering',duration);
+      res.status(200).send(true);   
+   } catch (error) {
+      res.status(500).send('Error creating watering')
+   }
+   
 }

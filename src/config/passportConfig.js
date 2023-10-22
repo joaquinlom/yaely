@@ -32,9 +32,13 @@ passport.serializeUser((user, done) => {
   done(null, user);
 });
 passport.deserializeUser(function (id, done) {
-  User.findById(id, function (err, user) {
+  /*User.findOne(id, function (err, user) {
     done(err, user);
-  });
+  })
+  ;*/
+  User.findOne({where: {email : id}}).then(user=>{
+    done(null,err)
+  })
 });
 passport.use(
   new JWTStrategy(

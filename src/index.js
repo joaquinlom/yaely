@@ -44,7 +44,7 @@ app.use(appSession);
 
 app.use("/api", indexRouter);
 app.use("/api/users", usersRouter);
-app.use("/api/device",deviceRouter)(passport);
+app.use("/api/device",deviceRouter);
 
 require('./ws/socket').listen(app,server,appSession);
 

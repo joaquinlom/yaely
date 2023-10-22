@@ -8,6 +8,7 @@ exports.saveFirebaseToken = async (req,res)=>{
 
    if(!token){
       res.status(500).send('Token is required');
+      return;
    }
 
    const user = User.findOne({
@@ -16,6 +17,7 @@ exports.saveFirebaseToken = async (req,res)=>{
 
    if(!user) {
       res.status(500).send('User is not found');
+      return;
    }
    await user.update({
       firebase_token: token

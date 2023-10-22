@@ -22,7 +22,7 @@ const addSocketIdtoSession = (req, res, next) => {
 
 //router.get('/zoom',addSocketIdtoSession,passport.authenticate('oauth2'));
 function generateAccessToken(username) {
-    return jwt.sign(username, TOKEN , { expiresIn: '180000s' });
+    return jwt.sign(username, TOKEN);
   }
 
 router.get('/test',(req,res)=>{

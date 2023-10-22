@@ -23,7 +23,7 @@ require('./config/passportConfig');
 //Routes
 var usersRouter = require("./routes/users");
 var indexRouter = require('./routes/index');
-
+var deviceRouter =require('./routes/device');
 
 app.use(cors()) 
 app.use(logger("dev"));
@@ -44,6 +44,7 @@ app.use(appSession);
 
 app.use("/api", indexRouter);
 app.use("/api/users", usersRouter);
+app.use("/api/device",deviceRouter)
 
 require('./ws/socket').listen(app,server,appSession);
 

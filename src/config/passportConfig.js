@@ -1,15 +1,19 @@
-const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
+const passport = require("passport");
+const LocalStrategy = require("passport-local").Strategy;
 const passportJWT = require("passport-jwt");
-const JWTStrategy   = passportJWT.Strategy;
+const JWTStrategy = passportJWT.Strategy;
 const ExtractJWT = passportJWT.ExtractJwt;
+const { User } = require("../database/index");
 
-
-passport.use('local',new LocalStrategy({
-  usernameField: 'user[email]',
-  passwordField: 'user[password]',
-}, (email, password, done) => {
-  /*
+passport.use(
+  "local",
+  new LocalStrategy(
+    {
+      usernameField: "user[email]",
+      passwordField: "user[password]",
+    },
+    (email, password, done) => {
+      /*
    Users.findOne({ email })
     .then((user) => {
       if(!user || !user.validatePassword(password)) {
@@ -19,18 +23,37 @@ passport.use('local',new LocalStrategy({
       return done(null, user);
     }).catch(done);
     */
-}));
+    }
+  )
+);
 
 // Used to stuff a piece of information into a cookie
 passport.serializeUser((user, done) => {
-    done(null, user);
+  done(null, user);
 });
-passport.deserializeUser(function(id, done) {
-    User.findById(id, function (err, user) {
-      done(err, user);
-    });
+passport.deserializeUser(function (id, done) {
+  User.findById(id, function (err, user) {
+    done(err, user);
+  });
 });
-
+passport.use(
+  new JWTStrategy(
+    {
+      jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
+      secretOrKey: "UACJ",
+    },
+    function (jwtPayload, cb) {
+      //find the user in db if needed. This functionality may be omitted if you store everything you'll need in JWT payload.
+      return User.User.findOne({ where: { email: jwtPayload.id } })
+        .then((user) => {
+          return cb(null, user);
+        })
+        .catch((err) => {
+          return cb(err);
+        });
+    }
+  )
+);
 /*
 passport.use('jwt',new JWTStrategy({
   jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),

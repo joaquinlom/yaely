@@ -32,6 +32,7 @@ router.get('/test',(req,res)=>{
 })
 
 router.post('/login',(req,res)=>{
+    console.log(req.body);
     const {email,password} = req.body;
 
     var hash = crypto.createHash('md5').update(password).digest('hex');

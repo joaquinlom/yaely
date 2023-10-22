@@ -44,6 +44,13 @@ router.post('/login',async (req,res)=>{
         console.log(hash);
         if(user.password == hash){
             console.log("User Found and the password is the same");
+            const jwt = generateAccessToken(user.email);
+            
+            user.update({
+                jwt_token: jwt
+            });
+
+            await user.save();
             res.status(200).send(user);
         }else{
             console.log(user);

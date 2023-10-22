@@ -2,7 +2,7 @@ module.exports = function(sequelize, DataTypes){
    var user = sequelize.define('users', {
       // Model attributes are defined here
       id : {
-         type: sequelize.INTEGER,
+         type: DataTypes.INTEGER,
          autoIncrement: true,
          primaryKey: true
       },

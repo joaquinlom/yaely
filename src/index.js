@@ -42,7 +42,7 @@ const appSession = session({
 })
 app.use(appSession);
 
-app.use("/api/login", indexRouter);
+app.use("/api", indexRouter);
 app.use("/api/users", usersRouter);
 
 require('./ws/socket').listen(app,server,appSession);

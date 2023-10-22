@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes){
-   var photo = sequelize.define('Photo', {
+   var photo = sequelize.define('photos', {
       // Model attributes are defined here
       id : {
          type: DataTypes.INTEGER,

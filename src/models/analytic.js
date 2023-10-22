@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes){
-   var analytic = sequelize.define('Analytic', {
+   var analytic = sequelize.define('analytics', {
       // Model attributes are defined here
       id : {
          type: DataTypes.INTEGER,

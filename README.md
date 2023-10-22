@@ -46,3 +46,10 @@
    
 
 
+root@yaely.13
+
+## Server
+App Name: index
+
+restart app: pm2 restart index
+monit app: pm2 monit

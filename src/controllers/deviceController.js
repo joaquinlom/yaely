@@ -2,6 +2,8 @@
 const request = require('request')
 const bodyParser = require('body-parser')
 const {Analytic} = require('../database/index');
+
+
 exports.takePhoto = async (req,res)=>{
    console.log("Taking Photo");
    const io = req.app.get('io');
@@ -11,6 +13,7 @@ exports.takePhoto = async (req,res)=>{
 }
 
 exports.watering = async (req,res)=>{
+   const io = req.app.get('io');
    console.log("Request Watering");
    const { duration } = req.body;
    if(!duration){

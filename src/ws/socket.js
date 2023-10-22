@@ -24,8 +24,19 @@ module.exports.listen = function (app, server, session) {
   });
 
   io.on("connection", (socket) => {
-    socket.emit("hello", "world");
+    //Listen when taking the phot is over
+    // is going to return the img as base64 and the user id,
+    //here is going to send to the user requested.
+    socket.on('device.uploadphoto',(arg)=>{
+        console.log(arg.img);
+        console.log(arg.id);
+
+        socket.emit('device.sendPhoto',{id: id})
+    })
+
   });
+
+
   /*
     io.use(sharedsession(session, {
         autoSave:true

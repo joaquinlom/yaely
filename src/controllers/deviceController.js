@@ -4,10 +4,17 @@ const bodyParser = require('body-parser')
 const {Analytic} = require('../database/index');
 
 
+/**
+ * User request a photo
+ * sends the id of the current user,
+ * this id is then returned on the WS Listener
+ */
 exports.takePhoto = async (req,res)=>{
    console.log("Taking Photo");
    const io = req.app.get('io');
-   io.emit('device.takephoto');
+   io.emit('device.takephoto',{
+      userId: req.user.id
+   });
 
    res.status(200).send(true);
 }

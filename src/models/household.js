@@ -10,10 +10,10 @@ module.exports = function(sequelize, DataTypes){
          type:DataTypes.STRING,
       },
       default_time: {
-         type: DataType.INTEGER
+         type: DataTypes.INTEGER
       },
       frequency: {
-         type: DataType.STRING
+         type: DataTypes.STRING
       }
     }, {
       // Other model options go here

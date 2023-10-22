@@ -10,16 +10,16 @@ module.exports = function(sequelize, DataTypes){
          type:DataTypes.STRING,
       },
       status: {
-         type: DataType.BOOLEAN
+         type: DataTypes.BOOLEAN
       },
       ground_moist: {
-         type: DataType.BOOLEAN
+         type: DataTypes.BOOLEAN
       },
       deposit_moist: {
-         type: DataType.BOOLEAN
+         type: DataTypes.BOOLEAN
       },
       valve_status:{
-         type: DataType.BOOLEAN
+         type: DataTypes.BOOLEAN
       }
     }, {
       // Other model options go here

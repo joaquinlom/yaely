@@ -23,7 +23,8 @@ exports.saveFirebaseToken = async (req,res)=>{
       await user.save();
 
       res.status(200).send(true);
-   }else{
+   }catch(error){
+      console.log(error);
       res.status(200).send(false);
    }
    

@@ -9,6 +9,7 @@ var cors = require("cors");
 const passport = require('passport');
 const socketio = require('socket.io')
 const session = require('express-session')
+const {firebase} = require('./config/firebase');
 
 
 var app = express();

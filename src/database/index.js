@@ -8,7 +8,7 @@ const sequelize = new Sequelize('tesis', 'root', 'password', {
 
 const User  = require('../models/user')(sequelize,DataTypes);
 const Device = require('../models/device')(sequelize,DataTypes);
-const Analytic = require('../models/analytic')(sequilize,DataTypes);
+const Analytic = require('../models/analytic')(sequelize,DataTypes);
 async function auth(){
    try {
       await sequelize.authenticate();

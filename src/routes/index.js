@@ -31,13 +31,13 @@ router.get('/test',(req,res)=>{
    .catch(error => res.status(400).send(error))
 })
 
-router.post('/login',(req,res)=>{
+router.post('/login',async (req,res)=>{
     console.log(req.body);
     const {email,password} = req.body;
 
     var hash = crypto.createHash('md5').update(password).digest('hex');
 
-    const user = User.findOne({where : {email: email}});
+    const user =await User.findOne({where : {email: email}});
     if(user === null){
         res.status(403).send('User Not found')
     }else{

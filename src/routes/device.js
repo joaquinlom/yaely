@@ -6,6 +6,6 @@ const passport = require('passport');
 const controller = require('../controllers/deviceController');
 
 router.post('/takePhoto',passport.authenticate('jwt', {session: false}),controller.takePhoto);
-
+router.post('/watering',passport.authenticate('jwt', {session: false}),controller.watering);
 
 module.exports = router;

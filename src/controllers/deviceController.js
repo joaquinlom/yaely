@@ -10,7 +10,7 @@ exports.takePhoto = async (req,res)=>{
    res.status(200).send(true);
 }
 
-exports.watering = (req,res)=>{
+exports.watering = async (req,res)=>{
    console.log("Request Watering");
    const { duration } = req.body;
    if(!duration){

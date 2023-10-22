@@ -4,7 +4,10 @@ var router = express.Router();
 // Use the request module to make HTTP requests from Node
 const request = require('request')
 const passport = require('passport');
+var crypto = require('crypto');
+const jwt = require('jsonwebtoken');
 const {User} = require('../database/index');
+const TOKEN = "UACJ"
 /**
  * The hook that returns the oauth code , saved to the database, and the 
  * obtain the information of the user, with that code
@@ -18,7 +21,9 @@ const addSocketIdtoSession = (req, res, next) => {
 }
 
 //router.get('/zoom',addSocketIdtoSession,passport.authenticate('oauth2'));
-
+function generateAccessToken(username) {
+    return jwt.sign(username, process.env.TOKEN_SECRET, { expiresIn: '1800s' });
+  }
 
 router.get('/test',(req,res)=>{
    return User.findAll({})
@@ -26,4 +31,24 @@ router.get('/test',(req,res)=>{
    .catch(error => res.status(400).send(error))
 })
 
+router.post('/login',(req,res)=>{
+    const {email,password} = req.body;
+
+    var hash = crypto.createHash('md5').update(password).digest('hex');
+
+    const user = User.findOne({where : {email: email}});
+    if(user === null){
+        res.status(403).send('User Not found')
+    }else{
+        console.log(hash);
+        res.status(200).send(hash);
+
+        if(user.password == hash){
+            console.log("User Found and the password is the same");
+        }
+    }
+
+    //If found return the user with JWT and save the JWT in the DB
+
+});
 module.exports = router;

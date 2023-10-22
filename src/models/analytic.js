@@ -7,10 +7,10 @@ module.exports = function(sequelize, DataTypes){
          primaryKey: true
       },
       duration: {
-         type: DataType.INTEGER, //in seconds
+         type: DataTypes.INTEGER, //in seconds
       },
       userId:{
-         type: DataType.INTEGER
+         type: DataTypes.INTEGER
       },
       requested_at: {
          type: "TIMESTAMP",

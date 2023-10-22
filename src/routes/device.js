@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var auth = require('./auth-config')
 const {User} = require('../database/index');
-require('../config/passportConfig');
+const passport = require('../config/passportConfig');
 
 
 router.post('/takePhoto',passport.authenticate('jwt', {session: false}),(req,res)=>{

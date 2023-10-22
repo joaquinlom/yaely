@@ -22,6 +22,10 @@ module.exports.listen = function (app, server, session) {
     console.log("NAMESPACE: " + socket.nsp.name);
     session(socket.request, socket.request.res || {}, next);
   });
+
+  io.on("connection", (socket) => {
+    socket.emit("hello", "world");
+  });
   /*
     io.use(sharedsession(session, {
         autoSave:true

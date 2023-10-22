@@ -3,7 +3,8 @@ const bodyParser = require('body-parser')
 const {User} = require('../database/index');
 
 exports.saveFirebaseToken = async (req,res)=>{
-   const {token} = res.body;
+   
+   const {token} = req.body;
 
    if(!token){
       res.status(500).send('Token is required');

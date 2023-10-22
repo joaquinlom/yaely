@@ -7,7 +7,7 @@ const sequelize = new Sequelize('tesis', 'root', 'password', {
  });
 
 const User  = require('../models/user')(sequelize,DataTypes);
-
+const Device = require('../models/device')(sequelize,DataTypes);
 
 async function auth(){
    try {
@@ -22,5 +22,6 @@ async function auth(){
 sequelize.authenticate()
 
 module.exports = {
-   User
+   User,
+   Device
 }

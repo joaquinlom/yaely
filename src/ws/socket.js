@@ -32,7 +32,7 @@ module.exports.listen = function (app, server, session) {
         console.log(arg.img);
         console.log(arg.id);
 
-        socket.emit('device.sendPhoto',{id: data.id})
+        socket.emit('device.sendPhoto',{id: arg.id})
     })
 
   });

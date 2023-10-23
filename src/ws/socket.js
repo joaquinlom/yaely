@@ -29,9 +29,8 @@ module.exports.listen = function (app, server, session) {
     //here is going to send to the user requested.
     socket.on('device.uploadphoto',(arg)=>{
         console.log(arg);
-        const data = JSON.parse(arg);
-        console.log(data.img);
-        console.log(data.id);
+        console.log(arg.img);
+        console.log(arg.id);
 
         socket.emit('device.sendPhoto',{id: data.id})
     })

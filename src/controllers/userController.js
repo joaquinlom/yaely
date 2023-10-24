@@ -12,7 +12,7 @@ exports.saveFirebaseToken = async (req,res)=>{
    }
 
    console.log(`user to find: ${req.user.email}`);
-   const user = User.findOne({
+   const user = await User.findOne({
       where: {email: req.user.email}
    });
    console.log(user);

@@ -11,10 +11,11 @@ exports.saveFirebaseToken = async (req,res)=>{
       return;
    }
 
+   console.log(`user to find: ${req.user.email}`);
    const user = User.findOne({
       where: {email: req.user.email}
    });
-
+   console.log(user);
    if(!user) {
       res.status(500).send('User is not found');
       return;

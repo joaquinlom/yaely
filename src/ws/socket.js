@@ -28,11 +28,9 @@ module.exports.listen = function (app, server, session) {
     // is going to return the img as base64 and the user id,
     //here is going to send to the user requested.
     socket.on('device.uploadphoto',(arg)=>{
-        console.log(arg);
-        console.log(arg.img);
-        console.log(arg.id);
-
-        socket.emit('device.sendPhoto',{id: arg.id})
+        console.log("Receiving Photo from device");
+        //Here is returned to the App
+        socket.emit('device.sendPhoto',{id: arg.id, img: arg.img})
     })
 
   });

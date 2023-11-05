@@ -7,8 +7,8 @@ const controller = require('../controllers/userController');
 /* GET users listing. */
 
 router.get('/me',passport.authenticate('jwt', {session: false}), function(req, res, next) {
-  const id  = req.user.id
-  return User.findOne({where: id: id ,include: [{model: House}]})
+  const id  = req.user.id;
+  return User.findOne({where: {id: id} ,include: [{model: House}]})
   .then((user) => {
     if(!user) {
       return res.sendStatus(400);

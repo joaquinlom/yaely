@@ -20,6 +20,9 @@ module.exports = function(sequelize, DataTypes){
       },
       valve_status:{
          type: DataTypes.BOOLEAN
+      },
+      houseId:{
+         type:DataTypes.STRING,
       }
     }, {
       // Other model options go here

@@ -12,6 +12,9 @@ module.exports = function(sequelize, DataTypes){
       userId:{
          type: DataTypes.INTEGER
       },
+      schedule:{
+         type: DataTypes.INTEGER
+      },
       requested_at: {
          type: "TIMESTAMP",
          defaultValue: sequelize.literal("CURRENT_TIMESTAMP"),

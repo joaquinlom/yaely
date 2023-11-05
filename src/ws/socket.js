@@ -31,7 +31,7 @@ module.exports.listen = function (app, server, session) {
         console.log("Receiving Photo from device");
         //Here is returned to the App
         console.log(arg);
-        socket.emit('device.sendPhoto',{id: arg.id, img: arg.img})
+        socket.emit('device.sendphoto',{id: arg.id, img: arg.img})
     })
 
   });

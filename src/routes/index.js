@@ -42,7 +42,7 @@ router.post("/login", async (req, res) => {
 
   var hash = crypto.createHash("md5").update(password).digest("hex");
 
-  const user = await User.findOne({ where: { email: email } });
+  const user = await User.findOne({ where: { email: email },include:[{model: House}] });
   if (user === null) {
     res.status(403).send("User Not found");
   } else {

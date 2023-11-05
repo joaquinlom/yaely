@@ -13,7 +13,9 @@ module.exports.setupCrons = async (app)=>{
    const houses = await House.findAll({});
    //Iterate by each house
    houses.map(house=>{
+      console.log("Setup House Cron job: "+house.id)
       var job = cron.schedule(`${house.frequency_hour} * * * *`, async ()=>{
+         console.log("Running Cron Schedule");
           const houseDate = moment(house.frequency_date,'DD/MM/YYYY');
           const currentTime = moment().format('DD/MM/YYYY');
           if(currentTime.isAfter(houseDate)){

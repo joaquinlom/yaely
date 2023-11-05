@@ -11,7 +11,7 @@ const Device = require('../models/device')(sequelize,DataTypes);
 const Analytic = require('../models/analytic')(sequelize,DataTypes);
 const House = require('../models/household')(sequelize,DataTypes);
 
-User.hasOne(House);
+User.belongsTo(House);
 
 async function auth(){
    try {

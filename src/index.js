@@ -52,7 +52,7 @@ app.use("/api/household", houseRouter);
 require('./ws/socket').listen(app,server,appSession);
 
 
-require('./cronjobs').setupCron(setupCrons);
+require('./cronjobs').setupCrons(setupCrons);
 
 app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'build', 'index.html'));

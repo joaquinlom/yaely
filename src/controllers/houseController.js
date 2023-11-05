@@ -4,7 +4,7 @@ const {User, House} = require('../database/index');
 var cron = require('node-cron');
 
 
-exports.removeFrequency = (req,res)=>{
+exports.removeFrequency = async (req,res)=>{
    try{
       const house = req.user.house;
       house.frequency_duration = "";

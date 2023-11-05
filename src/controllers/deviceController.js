@@ -35,7 +35,9 @@ exports.watering = async (req,res)=>{
       await entry.save();
    
       io.emit('device.watering',duration);
-      res.status(200).send(true);   
+
+      const analytc = Analytic.findAll({})
+      res.status(200).send(analytc);   
    } catch (error) {
       console.log(error);
       res.status(500).send('Error creating watering')

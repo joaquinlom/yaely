@@ -28,5 +28,6 @@ sequelize.authenticate()
 module.exports = {
    User,
    Device,
+   House,
    Analytic
 }

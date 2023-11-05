@@ -6,7 +6,7 @@ const request = require('request')
 const passport = require('passport');
 var crypto = require('crypto');
 const jwt = require('jsonwebtoken');
-const {User} = require('../database/index');
+const {User,House} = require('../database/index');
 const TOKEN = "UACJ"
 /**
  * The hook that returns the oauth code , saved to the database, and the 
@@ -26,7 +26,9 @@ function generateAccessToken(username) {
   }
 
 router.get('/test',(req,res)=>{
-   return User.findAll({})
+   return User.findAll({},include:[{
+    model: House
+   }])
    .then(usuario => res.status(200).send(usuario))
    .catch(error => res.status(400).send(error))
 })

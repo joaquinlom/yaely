@@ -12,7 +12,13 @@ module.exports = function(sequelize, DataTypes){
       default_time: {
          type: DataTypes.INTEGER
       },
-      frequency: {
+      frequency_duration: {
+         type: DataTypes.STRING
+      },
+      frequency_hour: {
+         type: DataTypes.STRING
+      },
+      frequency_date: {
          type: DataTypes.STRING
       }
     }, {

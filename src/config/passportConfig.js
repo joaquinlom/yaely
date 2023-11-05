@@ -3,7 +3,7 @@ const LocalStrategy = require("passport-local").Strategy;
 const passportJWT = require("passport-jwt");
 const JWTStrategy = passportJWT.Strategy;
 const ExtractJWT = passportJWT.ExtractJwt;
-const { User } = require("../database/index");
+const { User,House } = require("../database/index");
 
 passport.use(
   "local",
@@ -49,7 +49,7 @@ passport.use(
     function (jwtPayload, cb) {
       console.log(jwtPayload);
       //find the user in db if needed. This functionality may be omitted if you store everything you'll need in JWT payload.
-      return User.findOne({ where: { email: jwtPayload } })
+      return User.findOne({ where: { email: jwtPayload } ,include:[{model: House}]})
         .then((user) => {
           return cb(null, user);
         })

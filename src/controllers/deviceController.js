@@ -36,7 +36,7 @@ exports.watering = async (req,res)=>{
    
       io.emit('device.watering',duration);
 
-      const analytc = Analytic.findAll();
+      const analytc = await Analytic.findAll();
       console.log(analytc)
       res.status(200).send(analytc);   
    } catch (error) {

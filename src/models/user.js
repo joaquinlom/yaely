@@ -38,7 +38,7 @@ module.exports = function(sequelize, DataTypes){
          type: DataTypes.BOOLEAN,
          defaultValue: false
       },
-      acitvation_token: {
+      activation_token: {
          type: DataTypes.STRING
       }
     

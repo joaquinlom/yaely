@@ -9,8 +9,8 @@ router.post('/takePhoto',passport.authenticate('jwt', {session: false}),controll
 router.post('/watering',passport.authenticate('jwt', {session: false}),controller.watering);
 
 //Raspberry endpoints
-route.post('/updateDeposit',controller.updateDeposit);
-route.post('/updateValve',controller.updateValve);
-route.post('/updateHumidity',controller.updateHumidity);
+router.post('/updateDeposit',controller.updateDeposit);
+router.post('/updateValve',controller.updateValve);
+router.post('/updateHumidity',controller.updateHumidity);
 
 module.exports = router;

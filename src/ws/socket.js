@@ -49,7 +49,7 @@ module.exports.listen = function (app, server, session) {
     socket.on('device.connect',async (arg)=>{
       const socketId = socket.id;
 
-      const device = Device.findOne({
+      const device = await Device.findOne({
         where:{socketId: socketId}
       });
       if(device){

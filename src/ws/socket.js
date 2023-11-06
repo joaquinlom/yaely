@@ -86,11 +86,9 @@ module.exports.listen = function (app, server, session) {
         var users = await User.findAll({
           where:{ houseId: device.houseId}
         });
-        if(users){
-          //Send Notifications
-          console.log("Sending Push Notification Device is disconected")
-          sendDeviceDisconnected(users);
-        }
+        //Send Notifications
+        console.log("Sending Push Notification Device is disconected")
+        sendDeviceDisconnected(users);
       }
    });
 

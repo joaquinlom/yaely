@@ -114,10 +114,12 @@ exports.updateDeposit = async (req,res)=>{
  
    if(!UUID){
       res.status(401).send("UUID is required");
+      return;
    }
 
    if(!status){
       res.status(401).send("status is required");
+      return;
    }
 
 
@@ -128,6 +130,7 @@ exports.updateDeposit = async (req,res)=>{
       }
    });
    if(device){
+      console.log("Device found: "+status);
       device.update({
          deposit_moist: status
       });

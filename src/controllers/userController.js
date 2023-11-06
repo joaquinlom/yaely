@@ -76,7 +76,7 @@ exports.sendInvite =  async (req,res)=>{
    
    try{
       transporter.sendMail(mailOptions, ()=>{
-         var user = await User.create({
+         User.create({
             name: name,
             email:  email,
             activation_token: code,

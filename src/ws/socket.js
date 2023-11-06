@@ -3,8 +3,8 @@ const socketio = require("socket.io");
 //const dashboardSocket = require('./dashboard')
 //const canvasSocket = require('./canvas')
 var sharedsession = require("express-socket.io-session");
-const {Device} = require('../database/index');
-
+const {Device, User} = require('../database/index');
+const {sendDeviceDisconnected} = require('../config/firebase');
 var connectedDevices = [];
 
 module.exports.listen = function (app, server, session) {
@@ -89,6 +89,7 @@ module.exports.listen = function (app, server, session) {
         if(users){
           //Send Notifications
           console.log("Sending Push Notification Device is disconected")
+          sendDeviceDisconnected(users);
         }
       }
    });

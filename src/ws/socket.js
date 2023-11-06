@@ -32,6 +32,10 @@ module.exports.listen = function (app, server, session) {
         //Here is returned to the App
         console.log(arg);
         io.emit('device.sendphoto',{id: arg.id, img: arg.img})
+    });
+
+    socket.on('device.update.plant.status',(arg)=>{
+      io.emit('device.plant.status',arg)
     })
 
   });

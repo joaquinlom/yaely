@@ -17,10 +17,7 @@ module.exports = function(sequelize, DataTypes){
        }
       },
       password: {
-       type: DataTypes.STRING(64),
-        validate: {
-          is: /^[0-9a-f]{64}$/i
-        }
+       type: DataTypes.STRING,
       },
       houseId: {
          type: DataTypes.INTEGER

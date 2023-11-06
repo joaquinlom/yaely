@@ -48,7 +48,7 @@ module.exports.listen = function (app, server, session) {
     //The event will have the UUID, this will create or update the device record
     socket.on('device.connect',async (arg)=>{
       const socketId = socket.id;
-
+      console.log(arg)
       const device = await Device.findOne({
         where:{socketId: socketId}
       });

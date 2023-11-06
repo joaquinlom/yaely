@@ -83,11 +83,12 @@ module.exports.listen = function (app, server, session) {
         }
       });
       if(device){
-        var users = await User.findAll({
-          where:{ houseId: device.houseId}
-        });
+        const users = await User.findAll({
+          houseId: device.houseId
+       });
         //Send Notifications
         console.log("Sending Push Notification Device is disconected")
+        
         sendDeviceDisconnected(users);
       }
    });

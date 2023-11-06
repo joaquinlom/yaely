@@ -62,7 +62,7 @@ exports.sendInvite =  async (req,res)=>{
    const transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-      user: 'jvaldez.lom@gmail.com,'
+      user: 'jvaldez.lom@gmail.com',
       pass: 'kxhplgwyejqxdoje'
       }
       });

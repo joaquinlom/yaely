@@ -43,6 +43,23 @@
          console.log(password);
          
       })
+
+      function activate_account(code,password){
+
+
+        fetch("http://146.190.132.120/api/users/accept", {
+          method: "POST",
+          headers: {'Content-Type': 'application/json'}, 
+          body: JSON.stringify({
+            code: code,
+            password:password
+        })
+        }).then(res => {
+          console.log("Request complete! response:", res);
+        }).catch(err=>{
+          console.log(err);
+        });
+      }
     </script>
   </body>
 </html>

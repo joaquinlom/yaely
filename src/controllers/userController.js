@@ -2,7 +2,7 @@ const request = require('request')
 const bodyParser = require('body-parser')
 const {User} = require('../database/index');
 const nodemailer = require('nodemailer')
-
+var crypto = require("crypto");
 
 
 
@@ -97,5 +97,25 @@ exports.sendInvite =  async (req,res)=>{
  * This will activate the user, 
  */
 exports.acceptInvite = async (req,res)=>{
+   const {code,password} = req.body;
 
+   if(!code || !password){
+      res.status(401).send("Code or password is required");
+      return;
+   }
+   var hash = crypto.createHash("md5").update(password).digest("hex");
+   const user = await User.findOne({where: {acitvation_token: code}});
+   if(user){
+      //User found
+      user.update({
+         password: hash,
+         activation_token: '',
+         status: 'Y'
+       });
+ 
+       await user.save();
+       res.status(200).send(user);
+   }else{
+      res.status(500).send("User not found");
+   }
 }

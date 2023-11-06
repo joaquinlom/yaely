@@ -27,6 +27,7 @@ const sendDeviceDisconnected = (users)=>{
 
 const sendDepositEmpty = (users)=>{
    users.forEach(async user => {
+      console.log(user);
       if(user.firebase_token){
          let message = {
             token: user.firebase_token,

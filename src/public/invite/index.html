@@ -46,8 +46,8 @@ fetch("http://146.190.132.120/api/users/accept", {
 
          var url_string = (window.location.href).toLowerCase();
          var url = new URL(url_string);
-         var name = url.searchParams.get("code");
-         console.log(name);
+         var code = url.searchParams.get("code");
+         console.log(code);
 
          var password = document.getElementById("password1").value;
          var confirm_password = document.getElementById("password2").value;

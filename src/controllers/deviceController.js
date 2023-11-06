@@ -62,7 +62,7 @@ exports.updateHumidity = async (req,res)=>{
 
 
 
-   const device = Device.findOne({
+   const device = await Device.findOne({
       where:{
          UUID: UUID
       }
@@ -92,7 +92,7 @@ exports.updateValve = async (req,res)=>{
 
 
 
-   const device = Device.findOne({
+   const device = await Device.findOne({
       where:{
          UUID: UUID
       }
@@ -122,7 +122,7 @@ exports.updateDeposit = async (req,res)=>{
 
 
 
-   const device = Device.findOne({
+   const device = await Device.findOne({
       where:{
          UUID: UUID
       }

@@ -12,6 +12,9 @@ module.exports = function(sequelize, DataTypes){
       status: {
          type: DataTypes.BOOLEAN
       },
+      socketId:{
+         type:DataTypes.STRING,
+      },
       ground_moist: {
          type: DataTypes.BOOLEAN
       },

@@ -50,7 +50,7 @@ module.exports.listen = function (app, server, session) {
       const socketId = socket.id;
       console.log(arg)
       const device = await Device.findOne({
-        where:{socketId: socketId}
+        where:{UUID: arg.id}
       });
       if(device){
         device.update({

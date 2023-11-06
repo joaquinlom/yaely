@@ -1,7 +1,7 @@
 // Use the request module to make HTTP requests from Node
 const request = require('request')
 const bodyParser = require('body-parser')
-const {Analytic,Device} = require('../database/index');
+const {Analytic,Device, User} = require('../database/index');
 const {sendDepositEmpty} = require('../config/firebase');
 
 /**

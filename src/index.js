@@ -54,8 +54,8 @@ require('./ws/socket').listen(app,server,appSession);
 
 require('./cronjobs').setupCrons(app);
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+app.get('/api/accept', function (req, res) {
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
 server.listen(4000, function () {

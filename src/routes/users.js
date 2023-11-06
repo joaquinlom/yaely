@@ -20,5 +20,6 @@ router.get('/me',passport.authenticate('jwt', {session: false}), function(req, r
 
 router.post('/saveToken',passport.authenticate('jwt', {session: false}),controller.saveFirebaseToken);
 router.post('/invite',passport.authenticate('jwt',{session:false}),controller.sendInvite);
+router.post('/accept',controller.acceptInvite);
 
 module.exports = router;

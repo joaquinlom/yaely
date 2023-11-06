@@ -48,7 +48,7 @@ exports.watering = async (req,res)=>{
    
 }
 
-export.updateHumidity = async (req,res)=>{
+exports.updateHumidity = async (req,res)=>{
    const {UUID,status} = req.body;
    const io = req.app.get('io');
  
@@ -78,7 +78,7 @@ export.updateHumidity = async (req,res)=>{
    }
 }
 
-export.updateValve = async (req,res)=>{
+exports.updateValve = async (req,res)=>{
    const {UUID,status} = req.body;
    const io = req.app.get('io');
  
@@ -108,7 +108,7 @@ export.updateValve = async (req,res)=>{
    }
 }
 
-export.updateDeposit = async (req,res)=>{
+exports.updateDeposit = async (req,res)=>{
    const {UUID,status} = req.body;
    const io = req.app.get('io');
  

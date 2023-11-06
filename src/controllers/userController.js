@@ -104,7 +104,7 @@ exports.acceptInvite = async (req,res)=>{
       return;
    }
    var hash = crypto.createHash("md5").update(password).digest("hex");
-   const user = await User.findOne({where: {acitvation_token: code}});
+   const user = await User.findOne({where: {activation_token: code}});
    if(user){
       //User found
       user.update({

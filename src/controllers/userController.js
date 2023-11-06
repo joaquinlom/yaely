@@ -76,16 +76,17 @@ exports.sendInvite =  async (req,res)=>{
    
    
    try{
+     var usr = await User.create({
+         name: name,
+         email:  email,
+         activation_token: code,
+         active: 0,
+         houseId: req.user.house.id 
+       });
       transporter.sendMail(mailOptions, ()=>{
-         User.create({
-            name: name,
-            email:  email,
-            activation_token: code,
-            active: 0,
-            houseId: req.user.house.id 
-          });
+         console.log("Email sent")
       })
-     res.status(200).send(true);
+     res.status(200).send(usr);
    }catch(e){
       res.status(500).send(e);
    }

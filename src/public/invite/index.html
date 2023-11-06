@@ -35,8 +35,10 @@ fetch("http://146.190.132.120/api/users/accept", {
 })
 }).then(res => {
   console.log("Request complete! response:", res);
+  alert("Activacion exitosa!");
 }).catch(err=>{
   console.log(err);
+  alert("Error en la activacion");
 });
 }
 

@@ -1,8 +1,8 @@
 // Use the request module to make HTTP requests from Node
 const request = require('request')
 const bodyParser = require('body-parser')
-const {Analytic} = require('../database/index');
-
+const {Analytic,Device} = require('../database/index');
+const {sendDepositEmpty} = require('./config/firebase');
 
 /**
  * User request a photo
@@ -18,6 +18,8 @@ exports.takePhoto = async (req,res)=>{
 
    res.status(200).send(true);
 }
+
+exports.getInfo = async (req,res)=>{}
 
 exports.watering = async (req,res)=>{
    const io = req.app.get('io');
@@ -44,4 +46,103 @@ exports.watering = async (req,res)=>{
       res.status(500).send('Error creating watering')
    }
    
+}
+
+export.updateHumidity = async (req,res)=>{
+   const {UUID,status} = req.body;
+   const io = req.app.get('io');
+ 
+   if(!UUID){
+      res.status(401).send("UUID is required");
+   }
+
+   if(!status){
+      res.status(401).send("status is required");
+   }
+
+
+
+   const device = Device.findOne({
+      where:{
+         UUID: UUID
+      }
+   });
+   if(device){
+      device.update({
+         ground_moist: status
+      });
+      io.emit('device.update.plant.status',(status === 1) ? "true": "false");
+      res.status(200).send(true);
+   }else{
+      res.status(500).send("Device doesn't exist")
+   }
+}
+
+export.updateValve = async (req,res)=>{
+   const {UUID,status} = req.body;
+   const io = req.app.get('io');
+ 
+   if(!UUID){
+      res.status(401).send("UUID is required");
+   }
+
+   if(!status){
+      res.status(401).send("status is required");
+   }
+
+
+
+   const device = Device.findOne({
+      where:{
+         UUID: UUID
+      }
+   });
+   if(device){
+      device.update({
+         valve_status: status
+      });
+      io.emit('device.update.valve.status',(status === 1) ? "true": "false");
+      res.status(200).send(true);
+   }else{
+      res.status(500).send("Device doesn't exist")
+   }
+}
+
+export.updateDeposit = async (req,res)=>{
+   const {UUID,status} = req.body;
+   const io = req.app.get('io');
+ 
+   if(!UUID){
+      res.status(401).send("UUID is required");
+   }
+
+   if(!status){
+      res.status(401).send("status is required");
+   }
+
+
+
+   const device = Device.findOne({
+      where:{
+         UUID: UUID
+      }
+   });
+   if(device){
+      device.update({
+         deposit_moist: status
+      });
+      io.emit('device.update.deposit.status',(status === 1) ? "true": "false");
+
+      if(status == 0){
+         //Send notifications to the users
+         console.log("Get all users from the house, send notificaciones")
+         const users = await User.findAll({
+            houseId: device.houseId
+         });
+         sendDepositEmpty(users);
+      }
+      res.status(200).send(true);
+   }else{
+      res.status(500).send("Device doesn't exist")
+   }
 }

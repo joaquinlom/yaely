@@ -3,6 +3,10 @@ const socketio = require("socket.io");
 //const dashboardSocket = require('./dashboard')
 //const canvasSocket = require('./canvas')
 var sharedsession = require("express-socket.io-session");
+const {Device} = require('../database/index');
+
+var connectedDevices = [];
+
 module.exports.listen = function (app, server, session) {
   const io = socketio(server, {
     handlePreflightRequest: (req, res) => {
@@ -34,12 +38,64 @@ module.exports.listen = function (app, server, session) {
         io.emit('device.sendphoto',{id: arg.id, img: arg.img})
     });
 
+    //Get the UUID from args, Update record in database
     socket.on('device.update.plant.status',(arg)=>{
+      
       io.emit('device.plant.status',arg)
-    })
+    });
+
+    //once the device is connnected it will emit this event
+    //The event will have the UUID, this will create or update the device record
+    socket.on('device.connect',async (arg)=>{
+      const socketId = socket.id;
+
+      const device = Device.findOne({
+        where:{socketId: socketId}
+      });
+      if(device){
+        device.update({
+          socketId: socketId
+        });
+        device.save();
+      }else{
+        Device.create({
+          UUID: arg.id,
+          socketId: socketId,
+        })
+      }
+      connectedDevices.push(socket);
+    });
+
+    
+    socket.on('disconnect', async () =>{
+      console.log('Got disconnect!');
+
+      var i = connectedDevices.indexOf(socket);
+      if(i  == -1){
+        //No Socket is found
+        return;
+      }
+      connectedDevices.splice(i, 1);
+
+      var device = await Device.findOne({
+        where:{
+          socketId: socket.id
+        }
+      });
+      if(device){
+        var users = await User.findAll({
+          where:{ houseId: device.houseId}
+        });
+        if(users){
+          //Send Notifications
+          console.log("Sending Push Notification Device is disconected")
+        }
+      }
+   });
 
   });
 
+  
 
   /*
     io.use(sharedsession(session, {

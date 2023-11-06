@@ -2,7 +2,7 @@
 const request = require('request')
 const bodyParser = require('body-parser')
 const {Analytic,Device} = require('../database/index');
-const {sendDepositEmpty} = require('./config/firebase');
+const {sendDepositEmpty} = require('../config/firebase');
 
 /**
  * User request a photo

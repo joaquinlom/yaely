@@ -142,7 +142,7 @@ exports.updateDeposit = async (req,res)=>{
          const users = await User.findAll({
             houseId: device.houseId
          });
-         console.log(users);
+        //console.log(users);
          sendDepositEmpty(users);
       }
       res.status(200).send(true);

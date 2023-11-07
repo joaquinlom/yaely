@@ -18,19 +18,23 @@ module.exports.setupCrons = async (app)=>{
          console.log("Running Cron Schedule");
           const houseDate = moment(house.frequency_date,'DD/MM/YYYY');
           const currentTime = moment().format('DD/MM/YYYY');
-          if(currentTime.isAfter(houseDate)){
+          
+          if(currentTime.isSameOrAfter(houseDate)){
             const io = app.get('IO');
-
+            console.log("Server asking device to Watering");
+            io.emit('device.watering',house.frequency_duration);
             const entry = await Analytic.create({
                duration: house.frequency_duration,
                userId: house.frequency_user,
                schedule:1
             })
             await entry.save();
-         
-            io.emit('device.watering',house.frequency_duration);
             //const analytc = await Analytic.findAll();
             //console.log(analytc)
+          }else{
+            console.log("House time is before Current Time")
+            console.log(currentTime);
+            console.log(houseDate);
           }
       } );
 

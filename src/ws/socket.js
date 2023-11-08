@@ -4,7 +4,7 @@ const socketio = require("socket.io");
 //const canvasSocket = require('./canvas')
 var sharedsession = require("express-socket.io-session");
 const {Device, User} = require('../database/index');
-const {sendDeviceDisconnected} = require('../config/firebase');
+const {sendDeviceDisconnected,sendDeviceConnected} = require('../config/firebase');
 var connectedDevices = [];
 
 module.exports.listen = function (app, server, session) {
@@ -57,10 +57,15 @@ module.exports.listen = function (app, server, session) {
           socketId: socketId
         });
         device.save();
+        const users = await User.findAll({
+          houseId: device.houseId
+       });
+        sendDeviceConnected(users)
       }else{
         Device.create({
           UUID: arg.id,
           socketId: socketId,
+          houseId:1
         })
       }
       connectedDevices.push(socket);

@@ -25,6 +25,42 @@ const sendDeviceDisconnected = (users)=>{
    });
 }
 
+const sendDeviceConnected = (users)=>{
+   users.forEach(async user => {
+      if(user.firebase_token){
+         let message = {
+            token: user.firebase_token,
+            notification:{
+               title: "Dispositivo Conectado",
+            }
+         };
+         try{
+            const response = await firebase.messaging().send(message);
+         }catch(e){
+            console.error(e);
+         }
+      }
+   });
+}
+
+const sendWaterReminder = (users)=>{
+   users.forEach(async user => {
+      if(user.firebase_token){
+         let message = {
+            token: user.firebase_token,
+            notification:{
+               title: "Tu planta no ha sido regada recientemente.",
+            }
+         };
+         try{
+            const response = await firebase.messaging().send(message);
+         }catch(e){
+            console.error(e);
+         }
+      }
+   });
+}
+
 const sendDepositEmpty = (users)=>{
    users.forEach(async user => {
       //console.log(user);
@@ -44,4 +80,4 @@ const sendDepositEmpty = (users)=>{
    });
 }
 
-module.exports = { firebase, sendDepositEmpty, sendDeviceDisconnected }
+module.exports = { firebase, sendDepositEmpty, sendDeviceDisconnected ,sendWaterReminder }

@@ -31,6 +31,6 @@ module.exports = {
    User,
    Device,
    House,
-   Analytic
+   Analytic,
    Photo,
 }

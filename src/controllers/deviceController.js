@@ -21,6 +21,32 @@ exports.takePhoto = async (req,res)=>{
 
 exports.getInfo = async (req,res)=>{}
 
+exports.waterAlexa = async (req,res)=>{
+   const io = req.app.get('io');
+   console.log("Request Watering");
+   const duracion = 5;
+   if(!duration){
+      res.status(500).send("duration property is required");
+   }
+   //Add Analytic
+   try {
+      const entry = await Analytic.create({
+         duration: duration,
+         userId: 0
+      })
+      await entry.save();
+   
+      io.emit('device.watering',duration);
+
+      const analytc = await Analytic.findAll();
+      console.log(analytc)
+      res.status(200).send(analytc);   
+   } catch (error) {
+      console.log(error);
+      res.status(500).send('Error creating watering')
+   }
+}
+
 exports.watering = async (req,res)=>{
    const io = req.app.get('io');
    console.log("Request Watering");

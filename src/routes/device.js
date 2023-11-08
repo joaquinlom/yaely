@@ -12,5 +12,7 @@ router.post('/watering',passport.authenticate('jwt', {session: false}),controlle
 router.post('/updateDeposit',controller.updateDeposit);
 router.post('/updateValve',controller.updateValve);
 router.post('/updateHumidity',controller.updateHumidity);
+router.post('/waterAlexa',controller.waterAlexa);
+
 
 module.exports = router;

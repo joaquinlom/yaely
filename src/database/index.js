@@ -10,6 +10,7 @@ const User  = require('../models/user')(sequelize,DataTypes);
 const Device = require('../models/device')(sequelize,DataTypes);
 const Analytic = require('../models/analytic')(sequelize,DataTypes);
 const House = require('../models/household')(sequelize,DataTypes);
+const Photo = require('../models/photo')(sequelize,DataTypes);
 
 User.belongsTo(House);
 House.hasMany(Device);
@@ -31,4 +32,5 @@ module.exports = {
    Device,
    House,
    Analytic
+   Photo,
 }

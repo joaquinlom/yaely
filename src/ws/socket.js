@@ -3,7 +3,7 @@ const socketio = require("socket.io");
 //const dashboardSocket = require('./dashboard')
 //const canvasSocket = require('./canvas')
 var sharedsession = require("express-socket.io-session");
-const {Device, User} = require('../database/index');
+const {Device, User, Photo} = require('../database/index');
 const {sendDeviceDisconnected,sendDeviceConnected} = require('../config/firebase');
 var connectedDevices = [];
 
@@ -36,6 +36,12 @@ module.exports.listen = function (app, server, session) {
         //Here is returned to the App
         console.log(arg);
         io.emit('device.sendphoto',{id: arg.id, img: arg.img})
+
+        Photo.create({
+          img: img,
+          userId: id
+        });
+        
     });
 
     //Get the UUID from args, Update record in database

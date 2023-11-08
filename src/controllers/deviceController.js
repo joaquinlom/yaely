@@ -24,7 +24,7 @@ exports.getInfo = async (req,res)=>{}
 exports.waterAlexa = async (req,res)=>{
    const io = req.app.get('io');
    console.log("Request Watering");
-   const duracion = 5;
+   const duration = 5;
    if(!duration){
       res.status(500).send("duration property is required");
    }

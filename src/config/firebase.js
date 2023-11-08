@@ -80,4 +80,4 @@ const sendDepositEmpty = (users)=>{
    });
 }
 
-module.exports = { firebase, sendDepositEmpty, sendDeviceDisconnected ,sendWaterReminder ,sendWaterReminder}
+module.exports = { firebase, sendDepositEmpty, sendDeviceDisconnected ,sendWaterReminder ,sendDeviceConnected}

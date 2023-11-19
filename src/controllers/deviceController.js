@@ -97,7 +97,7 @@ exports.updateHumidity = async (req,res)=>{
       device.update({
          ground_moist: status
       });
-      io.emit('device.update.plant.status',(status === 1) ? "true": "false");
+      io.emit('device.update.plant.status',(status == 1) ? "True": "False");
       res.status(200).send(true);
    }else{
       res.status(500).send("Device doesn't exist")

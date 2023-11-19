@@ -98,7 +98,7 @@ exports.updateHumidity = async (req,res)=>{
          ground_moist: status
       });
       console.log(`Status for Ground: ${status} , Sending: ${(status == 1) ? "True": "False"}`);
-      io.emit('device.update.plant.status',(status == 1) ? "True": "False");
+      io.emit('device.plant.status',(status == 1) ? "True": "False");
       res.status(200).send(true);
    }else{
       res.status(500).send("Device doesn't exist")

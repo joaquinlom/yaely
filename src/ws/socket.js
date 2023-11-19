@@ -9,6 +9,7 @@ var connectedDevices = [];
 
 module.exports.listen = function (app, server, session) {
   const io = socketio(server, {
+    maxHttpBufferSize: 5e8,
     handlePreflightRequest: (req, res) => {
       const headers = {
         "Access-Control-Allow-Headers": "Content-Type, Authorization",

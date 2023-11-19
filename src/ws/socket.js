@@ -46,9 +46,11 @@ module.exports.listen = function (app, server, session) {
 
     //Get the UUID from args, Update record in database
     socket.on('device.update.plant.status',(arg)=>{
-      
+      console.log("Update plant status");
+      console.log(arg);
       io.emit('device.plant.status',arg)
     });
+
 
     //once the device is connnected it will emit this event
     //The event will have the UUID, this will create or update the device record

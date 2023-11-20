@@ -6,7 +6,7 @@ module.exports = function(sequelize, DataTypes){
          autoIncrement: true,
          primaryKey: true
       },
-      image: {
+      img: {
          type: DataTypes.STRING,
          allowNull: false,
       },

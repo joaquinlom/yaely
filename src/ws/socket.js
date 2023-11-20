@@ -39,7 +39,7 @@ module.exports.listen = function (app, server, session) {
         io.emit('device.sendphoto',{id: arg.id, img: arg.img})
 
         Photo.create({
-          image: arg.img,
+          img: arg.img,
           userId: arg.id
         });
         

@@ -64,6 +64,8 @@ module.exports.setupCrons = async (app) => {
       }else{
         console.log("Nunca entra la condicionde tiempo.");
       }
+    }else{
+      console.log("There is no last entry");
     }
   });
   cronJobs.push(job);

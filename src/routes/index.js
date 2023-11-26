@@ -58,7 +58,7 @@ router.post("/login", async (req, res) => {
       await user.save();
       const analytc = await Analytic.findAll();
       try{
-        res.status(200).send({...user, data: analytc});
+        res.status(200).send({user: user, analytc: analytc});
       }catch(e){
         console.log(e);
         res.status(200).send(user);

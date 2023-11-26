@@ -51,7 +51,9 @@ module.exports.setupCrons = async (app) => {
       limit: 1,
       order: [["createdAt", "DESC"]],
     });
+    console.log(latest_entry);
     const currentTime = moment().format("DD/MM/YYYY");
+    console.log(currentTime);
     //2023-11-05 20:40:18
     const latestDate = moment(latest_entry.createdAt,'YYYY-MM-DD hh:mm:ss')
     const daysToRemind = 2;

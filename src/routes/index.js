@@ -5,7 +5,7 @@ const request = require("request");
 const passport = require("passport");
 var crypto = require("crypto");
 const jwt = require("jsonwebtoken");
-const { User, House,Device } = require("../database/index");
+const { User, House,Device ,Analytic} = require("../database/index");
 const TOKEN = "UACJ";
 /**
  * The hook that returns the oauth code , saved to the database, and the
@@ -54,9 +54,10 @@ router.post("/login", async (req, res) => {
       user.update({
         jwt_token: jwt,
       });
-
+      
       await user.save();
-      res.status(200).send(user);
+      const analytc = await Analytic.findAll();
+      res.status(200).send({...user, analytc: analytc});
     } else {
       console.log(user);
       res.status(403).send("Password not correct");

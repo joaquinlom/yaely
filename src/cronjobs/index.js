@@ -43,7 +43,7 @@ module.exports.setupCrons = async (app) => {
   });
   //schedule the cron by the hour
 
-  var job = cron.schedule(`0 8 * * *`, async () => {
+  var job = cron.schedule(`* * * * *`, async () => {
     console.log("Every day at 8:00 AM");
     //const houseDate = moment(house.frequency_date,'DD/MM/YYYY');
     //latest analytic craeted date
@@ -61,6 +61,8 @@ module.exports.setupCrons = async (app) => {
           //Send Notifications
           console.log("Sending Push Notification remind watering")
           sendWaterReminder(users);
+      }else{
+        console.log("Nunca entra la condicionde tiempo.");
       }
     }
   });

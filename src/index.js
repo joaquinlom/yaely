@@ -1,3 +1,8 @@
+/**
+ * Configuracion de Express, 
+ * Usamos la libreria Passport para manejar el middleware del token
+ * Inicializamos la libreria de F
+ */
 var createError = require("http-errors");
 const http = require("http");
 var express = require("express");

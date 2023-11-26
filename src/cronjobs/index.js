@@ -54,7 +54,7 @@ module.exports.setupCrons = async (app) => {
       });
       console.log("Every day at 8:00 AM");
     console.log(latest_entry);
-    const currentTime = moment().format("DD/MM/YYYY");
+    const currentTime = moment();
     console.log(currentTime);
     //2023-11-05 20:40:18
     const latestDate = moment(latest_entry.createdAt,'YYYY-MM-DD hh:mm:ss')

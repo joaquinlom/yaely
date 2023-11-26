@@ -59,6 +59,7 @@ module.exports.setupCrons = async (app) => {
     //2023-11-05 20:40:18
     const latestDate = moment(latest_entry.createdAt,'YYYY-MM-DD hh:mm:ss')
     const daysToRemind = 2;
+    console.log(currentTime.diff(latestDate,'days'));
     if (latest_entry) {
       if (currentTime.diff(latestDate,'days') > daysToRemind) {
          const users = await User.findAll({});

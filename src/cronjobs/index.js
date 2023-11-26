@@ -1,6 +1,6 @@
 const request = require("request");
 const bodyParser = require("body-parser");
-const { User, House } = require("../database/index");
+const { User, House,Analytic } = require("../database/index");
 var moment = require("moment");
 var cron = require("node-cron");
 const {sendWaterReminder} = require('../config/firebase');

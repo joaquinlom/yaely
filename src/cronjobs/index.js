@@ -47,11 +47,12 @@ module.exports.setupCrons = async (app) => {
     
     //const houseDate = moment(house.frequency_date,'DD/MM/YYYY');
     //latest analytic craeted date
-    const latest_entry = await Analytic.findAll({
-      limit: 1,
-      order: [["createdAt", "DESC"]],
-    });
-    console.log("Every day at 8:00 AM");
+    try{
+      const latest_entry = await Analytic.findAll({
+        limit: 1,
+        order: [["createdAt", "DESC"]],
+      });
+      console.log("Every day at 8:00 AM");
     console.log(latest_entry);
     const currentTime = moment().format("DD/MM/YYYY");
     console.log(currentTime);
@@ -70,6 +71,11 @@ module.exports.setupCrons = async (app) => {
     }else{
       console.log("There is no last entry");
     }
+    }catch(e){
+      console.log(e);
+    }
+    
+    
   });
   cronJobs.push(job);
 };

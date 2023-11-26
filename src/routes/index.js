@@ -57,8 +57,13 @@ router.post("/login", async (req, res) => {
       
       await user.save();
       const analytc = await Analytic.findAll();
-      user.analytic = analytc
-      res.status(200).send({...user, data: analytc});
+      try{
+        res.status(200).send({...user, data: analytc});
+      }catch(e){
+        console.log(e);
+        res.status(200).send(user);
+      }
+      
     } else {
       console.log(user);
       res.status(403).send("Password not correct");

@@ -44,13 +44,14 @@ module.exports.setupCrons = async (app) => {
   //schedule the cron by the hour
 
   var job = cron.schedule(`* * * * *`, async () => {
-    console.log("Every day at 8:00 AM");
+    
     //const houseDate = moment(house.frequency_date,'DD/MM/YYYY');
     //latest analytic craeted date
     const latest_entry = await Analytic.findAll({
       limit: 1,
       order: [["createdAt", "DESC"]],
     });
+    console.log("Every day at 8:00 AM");
     console.log(latest_entry);
     const currentTime = moment().format("DD/MM/YYYY");
     console.log(currentTime);

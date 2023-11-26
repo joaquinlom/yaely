@@ -17,8 +17,8 @@ module.exports.setupCrons = async (app) => {
     console.log("Setup House Cron job: " + house.id);
     var job = cron.schedule(`${house.frequency_hour} * * * *`, async () => {
       console.log("Running Cron Schedule");
-      const houseDate = moment(house.frequency_date, "DD/MM/YYYY");
-      const currentTime = moment().format("DD/MM/YYYY");
+      const houseDate = moment(house.frequency_date);
+      const currentTime = moment();
 
       if (currentTime.isSameOrAfter(houseDate)) {
         const io = app.get("IO");
@@ -43,7 +43,7 @@ module.exports.setupCrons = async (app) => {
   });
   //schedule the cron by the hour
 
-  var job = cron.schedule(`* * * * *`, async () => {
+  var job = cron.schedule(`0 8 * * *`, async () => {
     
     //const houseDate = moment(house.frequency_date,'DD/MM/YYYY');
     //latest analytic craeted date

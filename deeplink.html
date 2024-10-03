@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deep Link Fallback Example</title>
+  
+  
+
+  <script>
+    function openApp() {
+      var appURL = 'mywicspirit://dashboard'; // Your deep link URL scheme
+      var fallbackURL = '';
+
+      // Determine the platform and set fallback URL
+      if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+        fallbackURL = 'https://apps.apple.com/us/app/my-wic-spirit/id1360635496'; // iOS App Store URL
+      } else if (/Android/i.test(navigator.userAgent)) {
+        fallbackURL = 'https://play.google.com/store/apps/details?id=com.wic.mywic'; // Android Play Store URL
+      }
+
+      // Try opening the deep link
+      window.location = appURL;
+
+      // Fallback to app store after a delay if deep link fails
+      setTimeout(function () {
+      	console.log("Go to stores")
+        window.location = fallbackURL;
+      }, 2000); // Adjust the delay (2 seconds in this case)
+    }
+  </script>
+</head>
+<body >
+  <h1>Opening the app...</h1>
+  <a id="myLink" href="#" onclick="openApp();">Open App</a>
+</body>
+</html>
